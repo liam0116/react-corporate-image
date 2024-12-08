@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- 外部圓環 -->
+  <circle cx="50" cy="50" r="48" fill="#8e44ad" stroke="#bb86fc" stroke-width="4" />
+  
+  <!-- 中心圓 -->
+  <circle cx="50" cy="50" r="30" fill="#fff" />
+
+  <!-- 中心文本 -->
+  <text x="50" y="55" font-size="32" fill="#8e44ad" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle" alignment-baseline="middle">
+    棟
+  </text>
+</svg>

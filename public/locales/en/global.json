@@ -1,0 +1,9 @@
+{
+    "navbar": {
+      "home": "Home",
+      "cases": "Success Cases",
+      "products": "Products",
+      "contact": "Contact"
+    },
+    "welcome": "Welcome to our website!"
+  }
