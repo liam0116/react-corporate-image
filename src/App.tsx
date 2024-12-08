@@ -5,6 +5,7 @@ import HomePage from './pages/home';
 import CasesPage from './pages/cases';
 import ContactPage from './pages/contact';
 import ProductsPage from './pages/products';
+import NotFoundPage from './pages/NotFoundPage'; // 引入 404 頁面
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,8 @@ const App: React.FC = () => {
             <Route path='/products' element={<ProductsPage />} />
             <Route path="/cases" element={<CasesPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            {/* 404 頁面匹配 */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
       </MainLayout>
     </Router>
