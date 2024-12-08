@@ -1,98 +1,94 @@
 import React from 'react';
-import { Box, Typography, Link, Divider } from '@mui/material';
-import { LocationOn, Email, Phone } from '@mui/icons-material';
-import logo from '../../assets/logo.svg'; // 導入 SVG 文件
+import { Box, Typography, Link, Divider, useMediaQuery } from '@mui/material';
+import { Facebook, Instagram, LineStyle } from '@mui/icons-material';
 
 const FooterInfo: React.FC = () => {
-  return (
-    <Box sx={{ backgroundColor: '#000', color: '#fff', padding: 4 }}>
-      <Divider sx={{ backgroundColor: '#333', marginBottom: 4 }} />
+  const isMobile = useMediaQuery('(max-width:600px)'); // 偵測是否為手機版本
 
-      {/* 內容區塊：一排兩個 */}
+  return (
+    <Box sx={{ backgroundColor: '#000', color: '#fff', padding: isMobile ? 1 : 3 }}>
+      <Divider sx={{ backgroundColor: '#333', marginBottom: isMobile ? 1 : 3 }} />
+
+      {/* 內容區塊 */}
       <Box
         sx={{
           display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          alignItems: 'start',
-          gap: 4,
-          textAlign: { xs: 'center', md: 'left' }, // 手機版居中
-          position: 'relative', // 用于分隔线定位
+          flexDirection: isMobile ? 'column' : 'row', // 手機版上下排列，桌面版水平排列
+          justifyContent: 'center', // 水平置中
+          alignItems: isMobile ? 'center' : 'start', // 手機版置中，桌面版靠上
+          gap: isMobile ? 2 : 4, // 調整區塊間距
+          textAlign: 'center',
         }}
       >
-        {/* 左側區塊：公司資訊（含 Logo）與聯繫方式 */}
-        <Box sx={{ flex: '1 1 45%' }}>
-          <img src={logo} alt="Company Logo" width="80" height="80" />
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginTop: 1 }}>
-            Company Name 棟
+        {/* 第一區：客戶服務時間 */}
+        <Box sx={{ flex: isMobile ? '1 1 auto' : '1 1 30%', maxWidth: '300px' }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: isMobile ? 0.5 : 1 }}>
+            客戶服務時間
           </Typography>
-          <Box sx={{ marginTop: 2 }}>
-            <Typography
-              variant="body2"
-              sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 1 }}
-            >
-              <LocationOn sx={{ color: '#bb86fc' }} /> 123 Innovation Street, Tech City, Country
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 1 }}
-            >
-              <Email sx={{ color: '#bb86fc' }} /> info@company.com
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 1 }}
-            >
-              <Phone sx={{ color: '#bb86fc' }} /> +1 234 567 890
-            </Typography>
-          </Box>
+          <Typography variant="body2">週一～週五：09:00 ~ 22:00 (UTC+8)</Typography>
+          <Typography variant="body2">週六／日及連續假日：12:00 ~ 18:00 (UTC+8)</Typography>
+          <Typography variant="body2" sx={{ marginTop: 1 }}>
+            電話：+886-2-7755-0575
+          </Typography>
+          <Typography variant="body2">傳真：+886-2-2784-5272</Typography>
+          <Typography variant="body2">信箱：customer_tw@asiayo.com</Typography>
         </Box>
 
-        {/* 中間分隔线 */}
-        <Divider
-          orientation="vertical"
-          flexItem
-          sx={{
-            display: { xs: 'none', md: 'block' }, // 手機版隱藏
-            backgroundColor: '#333',
-            width: '2px',
-          }}
-        />
+        {/* 第二區：公司資訊 (僅桌面版顯示) */}
+        {!isMobile && (
+          <Box sx={{ flex: '1 1 30%', maxWidth: '300px' }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
+              公司資訊
+            </Typography>
+            <Typography variant="body2">帥哥棟</Typography>
+            <Typography variant="body2">高雄市楠梓區德祥路</Typography>
+          </Box>
+        )}
 
-        {/* 右側區塊：Google 地圖鏈接和其他鏈接 */}
-        <Box sx={{ flex: '1 1 45%' }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
-            Find Us
+        {/* 第三區：社群媒體 */}
+        <Box sx={{ flex: isMobile ? '1 1 auto' : '1 1 30%', maxWidth: '300px' }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: isMobile ? 0.5 : 1 }}>
+            社群媒體
           </Typography>
-          <Link
-            href="https://www.google.com/maps?q=123+Innovation+Street,+Tech+City,+Country"
-            target="_blank"
-            rel="noopener"
-            sx={{ color: '#bb86fc', textDecoration: 'none', fontSize: '0.9rem' }}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center', // icon 水平置中
+              alignItems: 'center',
+              gap: isMobile ? 1.5 : 2, // 手機版 icon 間距更緊湊
+            }}
           >
-            View Location on Google Maps
-          </Link>
-          <Box sx={{ marginTop: 2 }}>
-            <Link
-              href="/privacy-policy"
-              sx={{
-                display: 'block',
-                color: '#bb86fc',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                marginBottom: 1,
-              }}
-            >
-              Privacy Policy
+            <Link href="#" aria-label="Facebook" sx={{ color: '#bb86fc' }}>
+              <Facebook fontSize="medium" />
             </Link>
-            <Link
-              href="/terms-of-service"
-              sx={{ display: 'block', color: '#bb86fc', textDecoration: 'none', fontSize: '0.9rem' }}
-            >
-              Terms of Service
+            <Link href="#" aria-label="Instagram" sx={{ color: '#bb86fc' }}>
+              <Instagram fontSize="medium" />
+            </Link>
+            <Link href="#" aria-label="LINE" sx={{ color: '#bb86fc' }}>
+              <LineStyle fontSize="medium" />
             </Link>
           </Box>
         </Box>
+      </Box>
+
+      {/* 隱私政策和服務條款 */}
+      <Box
+        sx={{
+          borderTop: '1px solid #333',
+          paddingTop: 2,
+          textAlign: 'center',
+          marginTop: 2,
+        }}
+      >
+        <Link
+          href="/privacy-policy"
+          sx={{ color: '#bb86fc', textDecoration: 'none', marginRight: 2 }}
+        >
+          隱私政策
+        </Link>
+        <Link href="/terms-of-service" sx={{ color: '#bb86fc', textDecoration: 'none' }}>
+          服務條款
+        </Link>
       </Box>
 
       {/* 底部版權聲明 */}
@@ -100,12 +96,10 @@ const FooterInfo: React.FC = () => {
         variant="body2"
         sx={{
           textAlign: 'center',
-          marginTop: 3,
-          paddingTop: 2,
-          borderTop: '1px solid #333',
+          paddingTop: 1,
         }}
       >
-        &copy; {new Date().getFullYear()} Company Name. All rights reserved.
+        &copy; {new Date().getFullYear()} 公司名稱. 版權所有.
       </Typography>
     </Box>
   );
